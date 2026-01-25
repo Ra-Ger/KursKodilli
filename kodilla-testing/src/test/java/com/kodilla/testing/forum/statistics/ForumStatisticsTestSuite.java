@@ -24,7 +24,7 @@ public class ForumStatisticsTestSuite {
 
     @BeforeEach
     public void beforeEveryTest() {
-         forumStatistics = new ForumStatistics(statisticsMock);
+         forumStatistics = new ForumStatistics();
         when(statisticsMock.postsCount()).thenReturn(20);
         when(statisticsMock.commentsCount()).thenReturn(100);
         when(statisticsMock.usersNames()).thenReturn(List.of("elo","jolo","rotfl","bongo","kotas","koka","mara","HaruChan","Legosi","twojStary123"));
