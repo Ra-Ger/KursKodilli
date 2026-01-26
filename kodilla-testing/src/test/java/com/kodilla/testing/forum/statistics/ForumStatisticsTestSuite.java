@@ -37,9 +37,9 @@ public class ForumStatisticsTestSuite {
         // When
         forumStatistics.calculateAdvStatistics(statisticsMock);
         // Then
-        assertEquals(0, forumStatistics.getAverageCommentsPerPost(), 0.001);
-        assertEquals(0, forumStatistics.getAveragePostsPerUser(), 0.001);
-        assertEquals(10, forumStatistics.getAverageCommentsPerUser(), 0.001);
+        assertEquals(0.0, forumStatistics.getAverageCommentsPerPost(), 0.001);
+        assertEquals(0.0, forumStatistics.getAveragePostsPerUser(), 0.001);
+        assertEquals(10.0, forumStatistics.getAverageCommentsPerUser(), 0.001);
     }
 
     @Test
@@ -50,8 +50,8 @@ public class ForumStatisticsTestSuite {
         forumStatistics.calculateAdvStatistics(statisticsMock);
         // Then
         assertEquals(0.1, forumStatistics.getAverageCommentsPerPost(), 0.001);
-        assertEquals(100, forumStatistics.getAveragePostsPerUser(), 0.001);
-        assertEquals(10, forumStatistics.getAverageCommentsPerUser(), 0.001);
+        assertEquals(100.0, forumStatistics.getAveragePostsPerUser(), 0.001);
+        assertEquals(10.0, forumStatistics.getAverageCommentsPerUser(), 0.001);
     }
 
     @Test
@@ -61,9 +61,9 @@ public class ForumStatisticsTestSuite {
         // When
         forumStatistics.calculateAdvStatistics(statisticsMock);
         // Then
-        assertEquals(0, forumStatistics.getAverageCommentsPerPost(), 0.001);
-        assertEquals(2, forumStatistics.getAveragePostsPerUser(), 0.001);
-        assertEquals(0, forumStatistics.getAverageCommentsPerUser(), 0.001);
+        assertEquals(0.0, forumStatistics.getAverageCommentsPerPost(), 0.001);
+        assertEquals(2.0, forumStatistics.getAveragePostsPerUser(), 0.001);
+        assertEquals(0.0, forumStatistics.getAverageCommentsPerUser(), 0.001);
     }
 
     @Test
@@ -74,8 +74,8 @@ public class ForumStatisticsTestSuite {
         forumStatistics.calculateAdvStatistics(statisticsMock);
         // Then
         assertEquals(0.5, forumStatistics.getAverageCommentsPerPost(), 0.001);
-        assertEquals(2, forumStatistics.getAveragePostsPerUser(), 0.001);
-        assertEquals(1, forumStatistics.getAverageCommentsPerUser(), 0.001);
+        assertEquals(2.0, forumStatistics.getAveragePostsPerUser(), 0.001);
+        assertEquals(1.0, forumStatistics.getAverageCommentsPerUser(), 0.001);
     }
 
     @Test
@@ -84,9 +84,9 @@ public class ForumStatisticsTestSuite {
         // When
         forumStatistics.calculateAdvStatistics(statisticsMock);
         // Then
-        assertEquals(5, forumStatistics.getAverageCommentsPerPost(), 0.001);
-        assertEquals(2, forumStatistics.getAveragePostsPerUser(), 0.001);
-        assertEquals(10, forumStatistics.getAverageCommentsPerUser(), 0.001);
+        assertEquals(5.0, forumStatistics.getAverageCommentsPerPost(), 0.001);
+        assertEquals(2.0, forumStatistics.getAveragePostsPerUser(), 0.001);
+        assertEquals(10.0, forumStatistics.getAverageCommentsPerUser(), 0.001);
     }
 
     @Test
@@ -96,9 +96,9 @@ public class ForumStatisticsTestSuite {
         // When
         forumStatistics.calculateAdvStatistics(statisticsMock);
         // Then
-        assertEquals(5, forumStatistics.getAverageCommentsPerPost(), 0.001);
-        assertEquals(0, forumStatistics.getAveragePostsPerUser(), 0.001);
-        assertEquals(0, forumStatistics.getAverageCommentsPerUser(), 0.001);
+        assertEquals(5.0, forumStatistics.getAverageCommentsPerPost(), 0.001);
+        assertEquals(0.0, forumStatistics.getAveragePostsPerUser(), 0.001);
+        assertEquals(0.0, forumStatistics.getAverageCommentsPerUser(), 0.001);
     }
 
     @Test
@@ -113,8 +113,8 @@ public class ForumStatisticsTestSuite {
         // When
         forumStatistics.calculateAdvStatistics(statisticsMock);
         // Then
-        assertEquals(5, forumStatistics.getAverageCommentsPerPost(), 0.001);
+        assertEquals(5.0, forumStatistics.getAverageCommentsPerPost(), 0.001);
         assertEquals(0.2, forumStatistics.getAveragePostsPerUser(), 0.001);
-        assertEquals(1, forumStatistics.getAverageCommentsPerUser(), 0.001);
+        assertEquals(1.0, forumStatistics.getAverageCommentsPerUser(), 0.001);
     }
 }

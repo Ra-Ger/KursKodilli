@@ -4,25 +4,32 @@ import java.util.List;
 
 public class ForumStatistics{
 
-    private float averagePostsPerUser = 0;
-    private float averageCommentsPerUser = 0;
-    private float averageCommentsPerPost = 0;
+    private int postsCount = 0;
+    private int usersCount = 0;
+    private int commentsCount = 0;
+    private double averagePostsPerUser = 0;
+    private double averageCommentsPerUser = 0;
+    private double averageCommentsPerPost = 0;
 
     public void calculateAdvStatistics(Statistics statistics)
     {
-        averagePostsPerUser = (statistics.usersNames().isEmpty()) ? 0 : (float) statistics.postsCount() /statistics.usersNames().size();
-        averageCommentsPerUser = (statistics.usersNames().isEmpty()) ? 0 : (float) statistics.commentsCount()/statistics.usersNames().size();
-        averageCommentsPerPost = (statistics.postsCount() == 0) ? 0 :(float) statistics.commentsCount()/statistics.postsCount();
+        postsCount = statistics.postsCount();
+        usersCount = statistics.usersNames().size();
+        commentsCount = statistics.commentsCount();
+        averagePostsPerUser = (usersCount == 0) ? 0 : (double) postsCount /usersCount;
+        averageCommentsPerUser = (usersCount == 0) ? 0 : (double) commentsCount/usersCount;
+        averageCommentsPerPost = (postsCount == 0) ? 0 :(double) commentsCount/postsCount;
     }
 
+    public int getPostsCount() { return postsCount; }
+    public int getCommentsCount() { return commentsCount; }
+    public int getUsersCount() { return usersCount; }
     public double getAveragePostsPerUser() {
         return averagePostsPerUser;
     }
-
     public double getAverageCommentsPerUser() {
         return averageCommentsPerUser;
     }
-
     public double getAverageCommentsPerPost() {
         return averageCommentsPerPost;
     }
