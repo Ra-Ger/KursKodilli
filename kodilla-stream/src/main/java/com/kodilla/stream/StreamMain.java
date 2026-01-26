@@ -1,6 +1,7 @@
 package com.kodilla.stream;                                                   // [1]
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.Executor;                                    // [2]
 import com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.lambda.Processor;                                   // [3]
@@ -37,5 +38,8 @@ public class StreamMain {                                                     //
         System.out.println(poemBeautifier.beautify(basicText,(str) -> ":---" + str + "---:"));
         System.out.println(poemBeautifier.beautify(basicText,(str) -> str.replaceFirst("Wyklęty powstań ludu ziemi","Bolszewickie brednie!!!")));
         System.out.println(poemBeautifier.beautify(basicText,(str) -> str.replaceAll("[ ]","_")));
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
     }
 }
