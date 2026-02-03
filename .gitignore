@@ -38,3 +38,8 @@ out/
 
 **/out/
 **/build/
+
+build/
+PokemonFight/
+RockPaperPokemon/
+*.jar

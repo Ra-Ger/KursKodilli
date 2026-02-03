@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.kodilla.rps.GameCore.visualInterface.NewGame">
+  <grid id="27dc6" binding="MainPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+    <constraints>
+      <xy x="20" y="20" width="824" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="55293" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <font size="20"/>
+          <text value="Game mode:"/>
+        </properties>
+      </component>
+      <component id="d623d" class="javax.swing.JComboBox" binding="gameModeComboBox">
+        <constraints/>
+        <properties>
+          <font size="20"/>
+          <model>
+            <item value="Classic game"/>
+            <item value="Pokemon game"/>
+            <item value="Pokemon+"/>
+            <item value="Multiverse"/>
+          </model>
+        </properties>
+      </component>
+      <component id="c9f7" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <font size="20"/>
+          <text value="Difficult:"/>
+        </properties>
+      </component>
+      <component id="a98aa" class="javax.swing.JComboBox" binding="difficultComboBox">
+        <constraints/>
+        <properties>
+          <font size="20"/>
+          <model>
+            <item value="Łatwy"/>
+            <item value="Normalny"/>
+            <item value="Nienormalny"/>
+          </model>
+        </properties>
+      </component>
+      <component id="89a9" class="javax.swing.JLabel">
+        <constraints/>
+        <properties>
+          <font size="20"/>
+          <text value="Round count:"/>
+        </properties>
+      </component>
+      <component id="f0528" class="javax.swing.JSpinner" binding="roundCount">
+        <constraints/>
+        <properties>
+          <font size="20"/>
+        </properties>
+      </component>
+      <component id="53fe8" class="javax.swing.JButton" binding="startButton" default-binding="true">
+        <constraints/>
+        <properties>
+          <font size="26"/>
+          <text value="Start!"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
