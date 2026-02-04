@@ -58,4 +58,16 @@ public abstract class Figure {
     public Map<Figure, FightResults> getFightResults() {
         return fightResults;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Figure figure = (Figure) o;
+        return Objects.equals(name, figure.name) && Objects.equals(imagePath, figure.imagePath) && Objects.deepEquals(clues, figure.clues) && Objects.equals(fightResults, figure.fightResults);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, imagePath, Arrays.hashCode(clues), fightResults);
+    }
 }
