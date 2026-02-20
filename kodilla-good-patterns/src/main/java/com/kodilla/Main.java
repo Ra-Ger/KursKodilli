@@ -1,26 +1,23 @@
 package com.kodilla;
 
 import com.kodilla.good.patterns.challenges.MovieStore;
+import com.kodilla.good.patterns.challenges.ProductOrderService;
+import com.kodilla.good.patterns.challenges.posComponents.*;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        String allTitles;
-        MovieStore movieStore = new MovieStore();
-        allTitles = movieStore.getMovies().values().stream().flatMap(List::stream).map(str -> str + "!").collect(Collectors.joining());
-        System.out.println(allTitles);
-        int someValue = factorial(3);
-        System.out.println(someValue);
-    }
+        BuyRequest buyRequest = new BuyRequest(new User("Adolf", 782029252), new Uran());
 
-    static int factorial(int value) {
-        int result = 1;
-        for(int i = 1; i <= value; i++)
-        {
-            result = result * i;
-        }
-        return result;
+        ProductOrderService productOrderService = new ProductOrderService(
+                new SMS(),
+                new ProductOrderServiceTemplate(),
+                new ProductOrderRepository()
+        );
+
+        productOrderService.process(buyRequest);
     }
 }
 
