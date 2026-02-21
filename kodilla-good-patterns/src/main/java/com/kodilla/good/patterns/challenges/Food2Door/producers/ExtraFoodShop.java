@@ -5,14 +5,14 @@ import com.kodilla.good.patterns.challenges.Food2Door.OrderDTO;
 import com.kodilla.good.patterns.challenges.Food2Door.Producer;
 import com.kodilla.good.patterns.challenges.Food2Door.Product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExtraFoodShop extends Producer {
     public ExtraFoodShop()
     {
         companyName = "ExtraFoodShop";
-        productList = new ArrayList<>(List.of(new Product("Potatoes", 6000),new Product("Onions",9000)));
+        productStock  = new HashMap<>(Map.of("Potatoes", 6000,"Onions",9000));
     }
 
     @Override

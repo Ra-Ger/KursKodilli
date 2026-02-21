@@ -1,20 +1,20 @@
 package com.kodilla.good.patterns.challenges.Food2Door;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Order {
-    List<Product> productOrderList;
+    Map<String,Integer> productStock;
     String orderID;
 
-    public Order(List<Product> productOrderList, String orderID) {
-        this.productOrderList = productOrderList;
+    public Order(Map<String,Integer> productOrderList, String orderID) {
+        this.productStock = productOrderList;
         this.orderID = orderID;
     }
 
-    public List<Product> getProductOrderList() {
-        return new ArrayList<>(productOrderList);
+    public  Map<String,Integer> getProductStock() {
+        return new HashMap<>(productStock);
     }
 
     public String getOrderID() {
@@ -25,11 +25,11 @@ public class Order {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(productOrderList, order.productOrderList) && Objects.equals(orderID, order.orderID);
+        return Objects.equals(productStock, order.productStock) && Objects.equals(orderID, order.orderID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productOrderList, orderID);
+        return Objects.hash(productStock, orderID);
     }
 }

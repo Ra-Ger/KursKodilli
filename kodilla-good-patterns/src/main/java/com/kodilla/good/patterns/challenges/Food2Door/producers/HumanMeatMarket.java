@@ -5,14 +5,14 @@ import com.kodilla.good.patterns.challenges.Food2Door.OrderDTO;
 import com.kodilla.good.patterns.challenges.Food2Door.Producer;
 import com.kodilla.good.patterns.challenges.Food2Door.Product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HumanMeatMarket extends Producer {
     public HumanMeatMarket()
     {
         companyName = "HumanMeatMarket";
-        productList = new ArrayList<>(List.of(new Product("Fingers", 3000),new Product("Legs",900)));
+        productStock  = new HashMap<>(Map.of("Fingers", 3000,"Legs",900));
     }
 
     @Override
