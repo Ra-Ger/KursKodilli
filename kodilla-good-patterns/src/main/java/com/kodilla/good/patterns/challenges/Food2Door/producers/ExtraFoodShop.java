@@ -3,7 +3,6 @@ package com.kodilla.good.patterns.challenges.Food2Door.producers;
 import com.kodilla.good.patterns.challenges.Food2Door.Order;
 import com.kodilla.good.patterns.challenges.Food2Door.OrderDTO;
 import com.kodilla.good.patterns.challenges.Food2Door.Producer;
-import com.kodilla.good.patterns.challenges.Food2Door.Product;
 
 import java.util.HashMap;
 import java.util.Map;
