@@ -6,87 +6,80 @@ import java.util.stream.Collectors;
 public class FlightService {
 
     private Map<City, List<Flight>> flightsFromCity = new HashMap<>();
+    private Map<City, List<Flight>> flightsToCity = new HashMap<>();
 
     public void addFlight(Flight flight) {
         flightsFromCity.computeIfAbsent(flight.getFrom(), k -> new ArrayList<>()).add(flight);
+        flightsToCity.computeIfAbsent(flight.getTo(), k -> new ArrayList<>()).add(flight);
     }
 
-    public List<Flight> directConnections(City from, City to) {
-        return flightsFromCity.getOrDefault(from,new ArrayList<>()).stream()
-                .filter(flight -> flight.getTo().equals(to))
+    List<Flight> findFlightsFrom(City from)
+    {
+        return flightsFromCity.get(from);
+    }
+    List<Flight> findFlightsTo(City to)
+    {
+        return flightsToCity.get(to);
+    }
+
+    public List<List<Flight>> findFlightsVia(City from, City via, City to) {
+        List<Flight> firstLegs = findFlightsFrom(from).stream()
+                .filter(f -> f.getTo().equals(via))
                 .collect(Collectors.toList());
-    }
 
-    public List<List<Flight>> findConnectingFlights(City from, City to) {
-        List<List<Flight>> allResults = new ArrayList<>();
-        search(from, to, new ArrayList<>(), allResults);
-        return allResults;
-    }
+        List<Flight> secondLegs = findFlightsFrom(via).stream()
+                .filter(f -> f.getTo().equals(to))
+                .collect(Collectors.toList());
 
-    private void search(City currentCity, City destination, List<Flight> currentPath, List<List<Flight>> allResults) {
-        if (currentPath.size() > 4) return;
+        List<List<Flight>> results = new ArrayList<>();
 
-        List<Flight> availableFlights = flightsFromCity.getOrDefault(currentCity, new ArrayList<>());
-
-        for (Flight flight : availableFlights) {
-            if (!currentPath.isEmpty()) {
-                Flight lastFlight = currentPath.get(currentPath.size() - 1);
-
-                boolean sameDay = flight.getFlightDate().equals(lastFlight.getFlightDate());
-                boolean afterPreviousArrival = flight.getDepartureTime().isAfter(lastFlight.getArrivalTime());
-
-                if (!sameDay || !afterPreviousArrival) {
-                    continue;
+        for (Flight first : firstLegs) {
+            for (Flight second : secondLegs) {
+                if (second.getFlightDate().equals(first.getFlightDate()) &&
+                        second.getDepartureTime().isAfter(first.getArrivalTime())) {
+                    results.add(List.of(first, second));
                 }
             }
-
-            if (isCityAlreadyVisited(flight.getTo(), currentPath)) {
-                continue;
-            }
-
-            currentPath.add(flight);
-
-            if (flight.getTo().equals(destination)) {
-                if(currentPath.size() > 1)
-                   allResults.add(new ArrayList<>(currentPath));
-            } else {
-                search(flight.getTo(), destination, currentPath, allResults);
-            }
-
-            currentPath.remove(currentPath.size() - 1);
         }
+        return results;
     }
 
-    private boolean isCityAlreadyVisited(City city, List<Flight> path) {
-        return path.stream().anyMatch(f -> f.getFrom().equals(city));
-    }
-
-    public FlightDTO process(City from, City to)
+    public FlightDTO process(City from, City via, City to)
     {
-        String information = "Flights from " + from.getName() + " to " + to.getName() + ":";
-        List<Flight> directFlights = directConnections(from,to);
-        List<List<Flight>> connectingFlights = findConnectingFlights(from,to);
-        information += "\nDirect connections:";
-        if(directFlights.isEmpty())
-            information += "\nNo direct connection available.";
+
+        List<Flight> flightsFrom = findFlightsFrom(from);
+        List<Flight> flightsTo = findFlightsTo(to);
+        List<List<Flight>> flightsVia = findFlightsVia(from,via,to);
+
+        String information = "Flights from: " + from.getName();
+        if(flightsFrom.isEmpty())
+            information += "\nNo flights available.";
         else
         {
-            information += "\n " + displayFlightPath(directFlights);
+            information += "\n" + displayFlightPath(flightsFrom);
         }
-        information += "\nconnecting Flights:";
+        information += "\nFlights to: " + to.getName();
 
-        if(connectingFlights.isEmpty())
-            information += "\nNo connecting flights available.";
+        if(flightsTo.isEmpty())
+            information += "\nNo flights available.";
+        else
+        {
+            information += "\n" + displayFlightPath(flightsTo);
+        }
+
+        information += "\n" + "Flights from: " + from.getName() + " via: " + via.getName() + " to " + to.getName();
+        if(flightsVia.isEmpty())
+            information += "\nNo flights available.";
         else
         {
             information += "\n";
-            for(List<Flight> listFlights : connectingFlights)
+            for(List<Flight> listFlights : flightsVia)
             {
                 information += displayFlightPath(listFlights);
             }
         }
 
-        return new FlightDTO(information,directFlights,connectingFlights);
+        return new FlightDTO(information,flightsFrom,flightsVia,flightsTo);
     }
 
     String displayFlightPath(List<Flight> flights)

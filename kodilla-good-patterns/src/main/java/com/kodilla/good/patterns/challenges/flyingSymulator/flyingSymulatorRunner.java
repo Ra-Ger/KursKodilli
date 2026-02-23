@@ -19,12 +19,15 @@ public class flyingSymulatorRunner {
                 LocalTime.of(14, 40),LocalTime.of(14, 45));
         Flight flight3 = new Flight(tibilisi,pjongjang, LocalDate.of(2025, 3, 15),
                 LocalTime.of(14, 50),LocalTime.of(15, 35));
+        Flight flight4 = new Flight(tibilisi,pjongjang, LocalDate.of(2025, 4, 11),
+                LocalTime.of(16, 30),LocalTime.of(20, 35));
 
         flightService.addFlight(flight1);
         flightService.addFlight(flight2);
         flightService.addFlight(flight3);
+        flightService.addFlight(flight4);
 
-        System.out.println(flightService.process(warsaw,dubai).getInformation() + "\n");
-        System.out.println(flightService.process(warsaw,pjongjang).getInformation());
+        System.out.println(flightService.process(dubai,tibilisi,pjongjang).getInformation() + "\n");
+        System.out.println(flightService.process(warsaw,dubai,pjongjang).getInformation());
     }
 }
