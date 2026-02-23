@@ -68,6 +68,6 @@ public abstract class Figure {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, imagePath, Arrays.hashCode(clues), fightResults);
+        return Objects.hash(name, imagePath, Arrays.hashCode(clues));
     }
 }
