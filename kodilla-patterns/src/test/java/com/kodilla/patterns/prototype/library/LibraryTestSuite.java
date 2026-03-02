@@ -12,9 +12,9 @@ public class LibraryTestSuite {
     void testGetBooks()
     {
         Library library = new Library("Babilon");
-        Book book1 = new Book("Mein Kampf","Adolf Hitler", LocalDate.of(1925 ,7,18));
-        Book book2 = new Book("101 reasons to cut off your legs","Pedro Mukake", LocalDate.of(2004 ,1,20));
-        Book book3 = new Book("Why Are You Gae?","Simon Kaggwa", LocalDate.of(2012 ,12,18));
+        Book book1 = new Book("Boring Book","John Borington", LocalDate.of(1925 ,7,18));
+        Book book2 = new Book("101 reasons to do nothing","Aloysy Nevermind", LocalDate.of(2004 ,1,20));
+        Book book3 = new Book("Wy are you like that?","Simon Kaggwa", LocalDate.of(2012 ,12,18));
         library.getBooks().add(book1);
         library.getBooks().add(book2);
         library.getBooks().add(book3);

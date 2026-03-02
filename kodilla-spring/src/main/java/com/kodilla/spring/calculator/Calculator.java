@@ -1,9 +1,9 @@
 package com.kodilla.spring.calculator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class Calculator {
     @Autowired
     Display display;
@@ -28,6 +28,9 @@ public class Calculator {
     }
     public double div(double a, double b)
     {
+        if (b == 0) {
+            throw new ArithmeticException("Division by 0 is currently not supported.");
+        }
         double result =  a/b;
         display.displayValue(result);
         return result;
