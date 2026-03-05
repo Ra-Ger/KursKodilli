@@ -1,0 +1,52 @@
+CREATE TABLE ISSUESLISTS
+(
+    ID SERIAL,
+    NAME VARCHAR(100) CHARSET utf8 NOT NULL
+);
+
+CREATE TABLE ISSUES
+(
+    ID SERIAL,
+    ISSUESLIST_ID BIGINT UNSIGNED,
+    FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUESLISTS(ID),
+    SUMMARY VARCHAR(200),
+    DESCRIPTION VARCHAR(2000),
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED,
+    FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+);
+
+INSERT INTO ISSUESLISTS (NAME)
+VALUES ('ToDo');
+INSERT INTO ISSUESLISTS (NAME)
+VALUES ('In progress');
+INSERT INTO ISSUESLISTS (NAME)
+VALUES ('Done');
+
+COMMIT;
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+VALUES (1,'Milk','Buy milk!',1);
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+VALUES (2,'Counterintelligence','Actions aimed at dismantling the foreign intelligence network.',2);
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+VALUES (2,'Walk a dog','Walking back and forth in the park.',3);
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+VALUES (3,'Corruption','Bribing the elites for world domination.',4);
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+VALUES (1,'Moon landing','We''ll be back there soon!',5);
+
+COMMIT;
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(1,'Potatoes','Buy potatoes!',1),
+(1,'Invasion plans','Top secret document detailing the invasion of a small, neutral country.',2),
+(1,'Dog grooming','Fluffing the fur and trimming the nails of the agency''s chief mascot.',3),
+(2,'Bakery heist','Stealing the secret recipe for the world''s best croissant.',4),
+(2,'Alien negotiations','Establishing first contact protocols with the Venusians.',5),
+(2,'Groceries','Remember to buy milk, eggs, and a new notepad for secret codes.',1),
+(3,'Espionage training','Teaching new recruits how to properly wear a fake mustache.',2),
+(3,'Cat photography','Capturing candid shots of felines for questionable purposes.',3),
+(3,'Vending machine hack','Developing a device to get free snacks from any vending machine.',4),
+(3,'Pyramid investigation','Researching if aliens really built the pyramids (spoiler: they didn''t).',5);
+
+COMMIT;
