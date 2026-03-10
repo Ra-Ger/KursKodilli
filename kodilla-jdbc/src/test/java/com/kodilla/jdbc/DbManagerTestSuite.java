@@ -25,7 +25,9 @@ class DbManagerTestSuite {
         DbManager dbManager = DbManager.getInstance();
 
         //When
-        String sqlQuery = "SELECT * FROM USERS";
+        String sqlQuery = """
+            SELECT * FROM USERS
+            """;
         Statement statement = dbManager.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(sqlQuery);
 
@@ -48,9 +50,11 @@ class DbManagerTestSuite {
         DbManager dbManager = DbManager.getInstance();
 
         //When
-        String sqlQuery = "SELECT U.FIRSTNAME, U.LASTNAME, I.SUMMARY\n" +
-                "  FROM USERS U\n" +
-                "  JOIN ISSUES I ON U.ID = I.USER_ID_ASSIGNEDTO";
+        String sqlQuery = """
+                SELECT U.FIRSTNAME, U.LASTNAME, I.SUMMARY
+                FROM USERS U\n
+                JOIN ISSUES I ON U.ID = I.USER_ID_ASSIGNEDTO
+                """;
         Statement statement = dbManager.getConnection().createStatement();
         ResultSet rs = statement.executeQuery(sqlQuery);
 
@@ -77,7 +81,7 @@ class DbManagerTestSuite {
         String sqlQuery = """
         SELECT U.FIRSTNAME, U.LASTNAME, COUNT(*) AS POST_NUMBER
         FROM USERS U JOIN POSTS P ON U.ID = P.USER_ID
-        GROUP BY U.FIRSTNAME, U.LASTNAME
+        GROUP BY U.ID, U.FIRSTNAME, U.LASTNAME
         HAVING POST_NUMBER > 1
         """;
         Statement statement = dbManager.getConnection().createStatement();
