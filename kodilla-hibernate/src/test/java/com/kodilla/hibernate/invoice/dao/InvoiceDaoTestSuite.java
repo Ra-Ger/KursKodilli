@@ -3,7 +3,6 @@ package com.kodilla.hibernate.invoice.dao;
 import com.kodilla.hibernate.invoice.Invoice;
 import com.kodilla.hibernate.invoice.Item;
 import com.kodilla.hibernate.invoice.Product;
-import com.kodilla.hibernate.tasklist.dao.TaskListDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +24,7 @@ public class InvoiceDaoTestSuite {
     @Test
     void testInvoiceDaoSave()
     {
+        //Given
         Product product1 = new Product("Not");
         Product product2 = new Product("Found");
         Item item1 = new Item(product1, BigDecimal.ONE,9,new BigDecimal(34593));
@@ -34,14 +34,18 @@ public class InvoiceDaoTestSuite {
         item1.setInvoice(invoice);
         item2.setInvoice(invoice);
 
+        //When
         productDao.save(product1);
         productDao.save(product2);
         invoiceDao.save(invoice);
         int id = invoice.getId();
 
+        //Then
         Invoice findedInvoice = invoiceDao.findById(id).orElseThrow();
         assertEquals(2,findedInvoice.getItems().size());
+        assertEquals("404",findedInvoice.getNumber());
 
+        //Clean up
         invoiceDao.deleteById(id);
         productDao.deleteById(product1.getId());
         productDao.deleteById(product2.getId());

@@ -2,10 +2,8 @@ package com.kodilla.hibernate.tasklist.dao;
 
 import com.kodilla.hibernate.task.Task;
 import com.kodilla.hibernate.task.TaskFinancialDetails;
-import com.kodilla.hibernate.task.dao.TaskDao;
 import com.kodilla.hibernate.tasklist.TaskList;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,17 +19,22 @@ public class TaskListDaoTestSuite {
     @Autowired
     private TaskListDao taskListDao;
     private static final String DESCRIPTION = "Test: Learn Hibernate";
+    private static final String LISTNAME = "Doing Stuff";
 
     @Test
     void testFindByListName()
     {
-        TaskList taskList = new TaskList("Doing Stuff", DESCRIPTION);
+        //Given
+        TaskList taskList = new TaskList(LISTNAME, DESCRIPTION);
+
+        //When
         taskListDao.save(taskList);
+        List<TaskList> readTaskList = taskListDao.findByListName(LISTNAME);
 
-        List<TaskList> readTaskList = taskListDao.findByListName("Doing Stuff");
-
+        //Then
         assertEquals(1, readTaskList.size());
 
+        //CleanUp
         int id = readTaskList.get(0).getId();
         taskListDao.deleteById(id);
     }
