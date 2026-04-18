@@ -3,6 +3,8 @@ package com.kodilla.sudoku;
 import java.util.ArrayList;
 
 public class SudokuBoard {
+    public static final int BOARD_SIZE = 9;
+
     private ArrayList<SudokuRow> board = new ArrayList<>();
 
     public SudokuBoard(ArrayList<SudokuRow> board) {

@@ -12,7 +12,7 @@ public class BoardConverter {
 
     public static char[][] fromSudokuBoardToCharBoard(SudokuBoard sb)
     {
-        char[][] result = new char[9][9];
+        char[][] result = new char[SudokuBoard.BOARD_SIZE][SudokuBoard.BOARD_SIZE];
         for(int row = 0; row < sb.getBoard().size(); row++)
         {
             for(int col = 0; col < sb.getBoard().get(row).getRow().size();col++)

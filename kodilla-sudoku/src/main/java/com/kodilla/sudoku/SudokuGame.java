@@ -6,9 +6,7 @@ import java.util.List;
 
 public class SudokuGame {
 
-    public List<BackTrack> backtrackList = new ArrayList<>();
-
-    public boolean checkStartingBoard(SudokuBoard board) {
+    static boolean checkStartingBoard(SudokuBoard board) {
         for (int i = 0; i < board.getBoard().size(); i++) {
             for (int j = 0; j < board.getBoard().get(i).getRow().size(); j++) {
                 int value = board.getBoard().get(i).getRow().get(j).getValue();
@@ -27,7 +25,9 @@ public class SudokuGame {
         return true;
     }
 
-    public SudokuBoard sudokuSolver(SudokuBoard sudokuBoard) throws InvalidBoard {
+    public static SudokuBoard sudokuSolver(SudokuBoard sudokuBoard) throws InvalidBoard {
+
+        List<BackTrack> backtrackList = new ArrayList<>();
 
         if (!checkStartingBoard(sudokuBoard)) {
             throw new InvalidBoard("This initial board is impossible to solve. Put numbers which doesn't repeats in row column and section!");
@@ -36,7 +36,7 @@ public class SudokuGame {
         SudokuBoard currentBoard = sudokuBoard;
 
         while (!currentBoard.isSolved()) {
-            if (!solveNextDigit(currentBoard)) {
+            if (!solveNextDigit(currentBoard,backtrackList)) {
                 if (backtrackList.isEmpty()) {
                     throw new InvalidBoard("Sudoku is impossible to solve.");
                 } else {
@@ -57,7 +57,7 @@ public class SudokuGame {
         return currentBoard;
     }
 
-    boolean isNumberInRow(SudokuBoard sudokuBoard, int row, int number)
+    static boolean isNumberInRow(SudokuBoard sudokuBoard, int row, int number)
     {
             for(SudokuElement sudokuElement : sudokuBoard.getBoard().get(row).getRow())
             {
@@ -70,7 +70,7 @@ public class SudokuGame {
         return false;
     }
 
-    boolean isNumberInColumn(SudokuBoard sudokuBoard, int column, int number)
+    static boolean isNumberInColumn(SudokuBoard sudokuBoard, int column, int number)
     {
         for(SudokuRow sudokuRow : sudokuBoard.getBoard())
         {
@@ -82,7 +82,7 @@ public class SudokuGame {
         return false;
     }
 
-    boolean isNumberInSection(SudokuBoard sudokuBoard, int row, int column, int number)
+    static boolean isNumberInSection(SudokuBoard sudokuBoard, int row, int column, int number)
     {
         int localRowSection = row - (row % 3);
         int localColumnSection = column - (column % 3);
@@ -99,12 +99,12 @@ public class SudokuGame {
         return false;
     }
 
-    boolean isAppropriatePlacement(SudokuBoard sudokuBoard, int row, int column, int number)
+    static boolean isAppropriatePlacement(SudokuBoard sudokuBoard, int row, int column, int number)
     {
         return !isNumberInRow(sudokuBoard,row,number) && !isNumberInColumn(sudokuBoard,column,number) && !isNumberInSection(sudokuBoard,row,column,number);
     }
 
-    boolean solveNextDigit(SudokuBoard sudokuBoard) {
+    static boolean solveNextDigit(SudokuBoard sudokuBoard, List<BackTrack> backtrackList) {
         for (int i = 0; i < sudokuBoard.getBoard().size(); i++) {
             for (int j = 0; j < sudokuBoard.getBoard().get(i).getRow().size(); j++) {
 
