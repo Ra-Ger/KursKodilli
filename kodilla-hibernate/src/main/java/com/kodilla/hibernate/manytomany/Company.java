@@ -6,6 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Company.findCompaniesByFragment",
+        query = "FROM Company WHERE name LIKE :ARG"
+)
 @NamedNativeQuery(
         name = "Company.retrieveCompanyByFirstLetters",
         query = "SELECT * FROM COMPANIES" +

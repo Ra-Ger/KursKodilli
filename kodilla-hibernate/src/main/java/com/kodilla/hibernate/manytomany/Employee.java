@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedQuery(
+        name = "Employee.findEmployeesByFragment",
+        query = "FROM Employee WHERE lastname LIKE :ARG"
+)
+@NamedQuery(
         name = "Employee.retrieveEmployeesByLastName",
         query = "FROM Employee WHERE lastname = :LASTNAME"
 )
