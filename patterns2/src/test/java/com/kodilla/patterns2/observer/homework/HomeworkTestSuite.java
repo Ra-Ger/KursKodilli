@@ -3,24 +3,40 @@ package com.kodilla.patterns2.observer.homework;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class HomeworkTestSuite {
+ class HomeworkTestSuite {
 
     @Test
-    public void testUpdate() {
+     void testUpdateJohn() {
         // Given
-        TasksQueue Mark = new MarkStalionTaskQueue();
-        TasksQueue Adolf = new AdolfReltihTaskQueue();
+        TasksQueue mark = new MarkStalionTaskQueue();
+        TasksQueue adolf = new AdolfReltihTaskQueue();
         Mentor johnSmith = new Mentor("John Smith");
-        Mentor ivoneEscobar= new Mentor("Ivone Escobar");
-        Mark.registerObserver(johnSmith);
-        Adolf.registerObserver(ivoneEscobar);
+        mark.registerObserver(johnSmith);
+        adolf.registerObserver(johnSmith);
+
         // When
-        Mark.addTask("Complicated task.");
-        Mark.addTask("Project: Flying penguin");
-        Adolf.addTask("Command and conquer");
-        Adolf.addTask("Project: epic furry");
+        mark.addTask("Complicated task.");
+        mark.addTask("Project: Flying penguin");
+        adolf.addTask("Command and conquer");
+        adolf.addTask("Project: epic furry");
+
         // Then
-        assertEquals(2, johnSmith.getUpdateCount());
-        assertEquals(2, ivoneEscobar.getUpdateCount());
+        assertEquals(4, johnSmith.getUpdateCount());
     }
+
+     @Test
+     void testUpdateIvone() {
+         // Given
+         TasksQueue adolf = new AdolfReltihTaskQueue();
+         Mentor johnSmith = new Mentor("John Smith");
+         Mentor ivoneEscobar= new Mentor("Ivone Escobar");
+         adolf.registerObserver(ivoneEscobar);
+
+         // When
+         adolf.addTask("Command and conquer");
+         adolf.addTask("Project: epic furry");
+
+         // Then
+         assertEquals(2, ivoneEscobar.getUpdateCount());
+     }
 }

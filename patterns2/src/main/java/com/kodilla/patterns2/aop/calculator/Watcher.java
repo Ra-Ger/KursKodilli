@@ -32,9 +32,9 @@ public class Watcher {
     public Object measureTime(final ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object result;
         try {
-            long begin = System.currentTimeMillis();                  // [1]
+            long begin = System.nanoTime();                  // [1]
             result = proceedingJoinPoint.proceed();
-            long end = System.currentTimeMillis();                    // [2]
+            long end = System.nanoTime();                    // [2]
             LOGGER.info("Time consumed " + (end - begin) + "[ms]");   // [3]
         } catch (Throwable throwable) {
             LOGGER.error(throwable.getMessage());               // [4]
